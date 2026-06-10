@@ -1,0 +1,606 @@
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+body {
+  background-color: #222629 !important; 
+  color: #b8c1ec !important; 
+  font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.text-accent { color: #d4af37 !important; }
+.badge-accent { background-color: #d4af37; color: #222629; font-weight: bold; }
+
+.btn-accent {
+  background-color: #d4af37 !important;
+  color: #222629 !important;
+  font-weight: bold;
+  border: none;
+}
+.btn-accent:hover {
+  background-color: #f1c40f !important;
+  box-shadow: 0 0 10px rgba(212,175,55,0.5);
+}
+.btn-outline-accent {
+  border: 1px solid #d4af37 !important;
+  color: #d4af37 !important;
+  background: transparent;
+}
+.btn-outline-accent:hover {
+  background-color: #d4af37 !important;
+  color: #222629 !important;
+}
+
+.main-title { color: #ffffff !important; font-weight: 800; font-size: 2rem; }
+.interface-title { color: #ffffff !important; font-size: 1.35rem; font-weight: bold; border-bottom: 1px solid #3b4247; padding-bottom: 12px; margin-bottom: 25px; }
+.section-padding { padding-top: 40px; padding-bottom: 60px; }
+
+/* 頂部導覽列 */
+.navbar-taiwan {
+  background-color: #181c1f !important;
+  border-bottom: 1px solid #3b4247;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  z-index: 1030;
+}
+
+.navbar-toggler:focus {
+  outline: none;
+}
+
+/* 右上角書籤 */
+.bookmark-nav {
+  flex-direction: row;
+}
+.bookmark-nav .nav-link {
+  color: #a0aab2 !important;
+  font-weight: bold;
+  font-size: 0.95rem;
+  border: none !important;
+  padding: 6px 14px;
+  margin-left: 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+.bookmark-nav .nav-link:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+.bookmark-nav .nav-link.active {
+  color: #222629 !important;
+  background-color: #d4af37 !important;
+  box-shadow: 0 2px 8px rgba(212,175,55,0.4);
+}
+
+/* 📱 手機/窄螢幕專屬樣式 (小於 768px) */
+@media (max-width: 767.98px) {
+  .navbar-collapse {
+    display: none;
+    width: 100%;
+  }
+  .navbar-collapse.show-list {
+    display: block !important;
+  }
+  .bookmark-nav {
+    flex-direction: column !important;
+    width: 100%;
+    padding: 12px 0 6px 0;
+  }
+  .bookmark-nav .nav-item {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .bookmark-nav .nav-link {
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    padding: 10px 14px;
+    text-align: left;
+  }
+}
+
+/* 📸 新增的照片集相片牆卡片特效 */
+.gallery-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border: 1px solid #3b4247;
+  cursor: pointer;
+}
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.gallery-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to top, rgba(24,28,31,0.9) 0%, rgba(24,28,31,0.2) 100%);
+  opacity: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+  transition: opacity 0.3s ease;
+}
+.gallery-text {
+  color: #d4af37;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+/* 滑鼠懸停特效：縮放照片、浮現文字遮罩 */
+.gallery-card:hover img {
+  transform: scale(1.08);
+}
+.gallery-card:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* 頂部輪播與內容 */
+.hero-carousel { margin-top: 56px; }
+.hero-carousel .carousel-img {
+  height: 65vh;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+.hero-carousel .carousel-img::after {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(34,38,41,0.1), #222629);
+}
+
+.card-carousel .card-img-top { height: 160px; object-fit: cover; }
+.city-intro-box { background-color: #1a2a3a; border-left: 6px solid #d4af37; padding: 25px; border-radius: 0 12px 12px 0; }
+.item-card { background: #2b3035 !important; border: 1px solid #3b4247 !important; border-radius: 10px; overflow: hidden; }
+.item-card .card-img-top { height: 160px; object-fit: cover; }
+.tip-box { background-color: #2b3035; border: 1px solid #3b4247; padding: 20px; border-radius: 8px; }
+.border-bottom-gray { border-bottom: 1px solid #3b4247 !important; }
+/* 橫式卡片專用：讓圖片背景完美填滿並自適應高度 */
+.horizontal-card-img {
+  width: 100%;
+  height: 100%;
+  min-height: 300px; /* 確保手機版時圖片有足夠高度 */
+  background-size: cover;
+  background-position: center;
+}
+
+/* 放大內文字距與行高，讓橫式大區塊閱讀更舒適 */
+.lh-lg {
+  line-height: 1.8 !important;
+}
+
+@media (min-width: 768px) {
+  .horizontal-card-img {
+    min-height: 100%; /* 電腦版時自動與右側文字等高 */
+  }
+}
+/* 讓包裹整張卡片的超連結不要出現奇怪底線與顏色 */
+.news-block-link {
+  text-decoration: none !important;
+  display: block;
+  color: inherit;
+}
+
+/* 新聞卡片主體與平滑動畫設定 */
+.news-card {
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 🖼️ 當滑鼠靠近時：卡片變大、往上漂浮、陰影加深、邊框變亮 */
+.news-block-link:hover .news-card {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  border-color: var(--accent-color, #ffc107) !important; /* 如果你有設定 text-accent 的顏色，這裡會自動呼應 */
+}
+
+/* 圖片外殼：防止圖片放大時爆出格子 */
+.news-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.news-img-wrapper img {
+  transition: transform 0.5s ease;
+}
+
+/* 1. 初始化所有卡片（包含工業地景、信仰、最新消息）的動畫平滑度 */
+.item-card, .news-card {
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 2. 工業地景 與 在地信仰卡片：滑鼠靠近時放大、上浮、加深陰影 */
+.item-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  border-color: #ffc107 !important; /* 邊框亮起金色（可自行修改顏色） */
+}
+
+/* 3. 讓原本最新消息的超連結懸停特效維持正常運作 */
+.news-block-link {
+  text-decoration: none !important;
+  display: block;
+  color: inherit;
+}
+
+.news-block-link:hover .news-card {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  border-color: #ffc107 !important;
+}
+
+/* 圖片外殼與動畫設定 */
+.news-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.news-img-wrapper img {
+  transition: transform 0.5s ease;
+}
+
+.news-block-link:hover .news-img-wrapper img {
+  transform: scale(1.08);
+}
+
+.news-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  padding: 6px 10px;
+}
+
+.news-title {
+  color: #fff;
+  transition: color 0.3s ease;
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+
+.news-block-link:hover .news-title {
+  color: #ffc107;
+}
+
+.news-footer {
+  transition: transform 0.3s ease;
+}
+
+.news-block-link:hover .news-footer {
+  transform: translateX(4px);
+}
+/* ==========================================================================
+   最新消息混合模式自訂 CSS (包含直式卡片與橫式列表特效)
+   ========================================================================== */
+
+/* 1. 基礎設定與初始化 */
+.news-block-link, .news-list-link {
+  text-decoration: none !important;
+  display: block;
+  color: inherit;
+}
+
+/* 2. 直式圖片卡片 (前兩篇) 的特效 */
+.news-card {
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 直式卡片懸停：放大 1.03 倍、上浮 6px */
+.news-block-link:hover .news-card {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  border-color: #ffc107 !important;
+}
+
+.news-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.news-img-wrapper img {
+  transition: transform 0.5s ease;
+}
+
+.news-block-link:hover .news-img-wrapper img {
+  transform: scale(1.06); /* 圖片微放大 */
+}
+
+.news-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  padding: 6px 10px;
+}
+
+.news-title {
+  color: #fff;
+  transition: color 0.3s ease;
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+
+.news-block-link:hover .news-title {
+  color: #ffc107;
+}
+
+.news-footer {
+  transition: transform 0.3s ease;
+}
+
+.news-block-link:hover .news-footer {
+  transform: translateX(4px);
+}
+
+
+/* 3. 橫式純文字條 (後兩篇) 的特效 */
+.news-timeline-wrapper {
+  padding-top: 10px;
+}
+
+.news-horizontal-bar {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
+              box-shadow 0.35s ease, 
+              border-color 0.35s ease, 
+              background-color 0.35s ease;
+  cursor: pointer;
+}
+
+/* 橫式文字條懸停：同步放大 1.03 倍、上浮 6px */
+.news-list-link:hover .news-horizontal-bar {
+  transform: translateY(-6px) scale(1.03);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  border-color: #ffc107 !important;
+}
+
+.news-bar-icon {
+  min-width: 80px;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding-right: 15px;
+}
+
+.news-bar-title {
+  color: #ffffff;
+  margin-bottom: 0;
+  transition: color 0.3s ease;
+  font-size: 1.15rem;
+}
+
+.news-list-link:hover .news-bar-title {
+  color: #ffc107;
+}
+
+.news-bar-arrow {
+  transition: transform 0.3s ease;
+}
+
+.news-list-link:hover .news-bar-arrow {
+  transform: translateX(5px);
+}
+
+.news-list-link:hover .news-bar-arrow i {
+  color: #ffc107 !important;
+}
+
+.lh-base {
+  line-height: 1.6 !important;
+}
+
+/* 橫式區塊的手機版 RWD 斷點防爆優化 */
+@media (max-width: 575.98px) {
+  .news-horizontal-bar {
+    flex-direction: column;
+    align-items: flex-start !important;
+    padding: 20px;
+  }
+  .news-bar-icon {
+    min-width: auto;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-right: 0;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    text-align: left !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .news-bar-icon .badge {
+    margin-top: 0 !important;
+    display: inline-block !important;
+  }
+  .news-bar-content {
+    padding-left: 0 !important;
+    width: 100%;
+  }
+  .news-bar-arrow {
+    display: none;
+  }
+}
+/* ==========================================================================
+   當地照片集：滑鼠懸停放大特效
+   ========================================================================== */
+.gallery-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+              box-shadow 0.3s ease, 
+              border-color 0.3s ease;
+  aspect-ratio: 4 / 3; /* 讓所有相片框統一比例，畫面更整齊 */
+}
+
+.gallery-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 確保不變形 */
+  transition: transform 0.5s ease;
+}
+
+/* 🌟 滑鼠靠近：外殼微放大 1.03、亮金框、加深陰影；內部圖片再放大 1.06 */
+.gallery-item:hover .gallery-img-wrapper {
+  transform: scale(1.03) translateY(-2px);
+  border-color: #ffc107 !important;
+  box-shadow: 0 8px 20px rgba(255, 193, 7, 0.2);
+  cursor: pointer;
+}
+
+.gallery-item:hover .gallery-img-wrapper img {
+  transform: scale(1.06);
+}
+
+/* ==========================================================================
+   精緻大圖燈箱 (Modal Lightbox) 樣式
+   ========================================================================== */
+/* 燈箱背景調成極深色半透明 */
+.lightbox-modal {
+  display: none;       /* 預設隱藏 */
+  position: fixed;
+  z-index: 9999;       /* 確保在最上層 */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 10, 10, 0.9) !important; /* 保留你原本偏好的極黑背景 */
+  align-items: center;
+  justify-content: center;
+}
+
+/* 當 JS 加上 .show 時，燈箱才會浮現 */
+.lightbox-modal.show {
+  display: flex;
+}
+
+/* 【核心結構】圖片與文字的外層容器 */
+.lightbox-content {
+  position: relative;
+  max-width: 85%;
+  max-height: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 75vh;       /* 限制最大高度，防止圖片把整條螢幕塞滿 */
+  object-fit: contain;
+  border: 4px solid #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* 【核心結構】圖片下方說明文字 */
+#lightboxCaption {
+  color: #ccc;
+  margin-top: 15px;
+  font-size: 1.1rem;
+}
+
+
+.lightbox-close {
+  position: fixed;        /* 改為 fixed，相對於整個螢幕定位 */
+  top: 20px;
+  right: 25px;
+  background: rgba(0, 0, 0, 0.5); /* 加上半透明黑底，確保白圖背景時也看得清 */
+  border: none;
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 2.5rem;      /* 稍微放大一點點，比較好點擊 */
+  width: 50px;
+  height: 50px;
+  line-height: 45px;      /* 讓文字置中 */
+  text-align: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  z-index: 10005;         /* 層級必須大於 .lightbox-modal 的 9999 與圖片 */
+  cursor: pointer;
+}
+
+.lightbox-close:hover {
+  color: #ffc107 !important;
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+/* 2. 修正左右切換按鈕：確保它們左右置頂，且層級夠高 */
+.lightbox-nav {
+  position: fixed;        /* 改為 fixed，防止被內容擠壓變形 */
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6); /* 加深底色避免被圖吃掉 */
+  color: #ffffff !important;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  text-decoration: none !important;
+  opacity: 0.8;
+  z-index: 10004;         /* 層級必須大於 .lightbox-content 內部的圖片 */
+  cursor: pointer;
+}
+
+.lightbox-nav:hover {
+  background: rgba(255, 193, 7, 0.9);
+  color: #000000 !important;
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* 確保左右按鈕靠著網頁兩側邊緣 */
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+
+
+@media (max-width: 768px) {
+  .lightbox-close {
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.8rem;
+    line-height: 36px;
+  }
+  .lightbox-nav {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
+}
+
+
+.item-card {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  transform: translateZ(0); /* 啟用 GPU 渲染加速 */
+}
+
+/* 確保按鈕本身在卡片放大時不會變形 */
+.item-card .btn, 
+.item-card a[class*="btn"] {
+  display: inline-block;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
